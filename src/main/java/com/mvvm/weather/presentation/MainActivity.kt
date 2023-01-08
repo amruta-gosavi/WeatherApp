@@ -1,4 +1,4 @@
-package com.mvvm.weather
+package com.mvvm.weather.presentation
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.mvvm.weather.R
 import com.mvvm.weather.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
