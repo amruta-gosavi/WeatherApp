@@ -3,13 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="com.mvvm.weather.presentation.model.DisplayableWeatherData.DisplayableData" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="weather"
+            type="DisplayableData" />
+
+        <variable
+            name="image"
+            type="int" />
+
+    </data>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/standard_margin"
-        android:layout_marginTop="@dimen/standard_margin"
-        android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/fab_margin"
         android:hapticFeedbackEnabled="true"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
@@ -33,8 +47,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
+                android:text="@{weather.day}"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -46,6 +61,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/standard_margin"
+                app:imageResource="@{image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_day"
                 app:layout_constraintTop_toTopOf="parent"
@@ -58,28 +74,29 @@
                 android:layout_marginStart="@dimen/standard_margin"
                 android:ellipsize="end"
                 android:lines="1"
+                android:text="@{weather.temperature}"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/icon_day"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.511"
                 tools:text="50(min)" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/marker"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="20dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/icon_temp_min"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.511"
-                tools:text="--" />
+                app:srcCompat="@drawable/windy" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/icon_temp_max"
@@ -88,8 +105,9 @@
                 android:layout_marginStart="@dimen/standard_margin"
                 android:ellipsize="end"
                 android:lines="1"
+                android:text="@{weather.windSpeed}"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/marker"
                 app:layout_constraintTop_toTopOf="parent"
