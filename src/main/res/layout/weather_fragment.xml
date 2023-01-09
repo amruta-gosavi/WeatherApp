@@ -47,8 +47,9 @@
                 style="@style/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:fontFamily="@font/font_regular"
                 android:text="@string/new_york"
                 android:textSize="@dimen/standard_margin"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +68,9 @@
                 app:layout_constraintHorizontal_bias="0.375"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_city"
-                app:layout_constraintVertical_bias="0.073" />
+                app:layout_constraintVertical_bias="0.073"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_weather_data" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

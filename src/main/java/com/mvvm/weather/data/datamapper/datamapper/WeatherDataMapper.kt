@@ -1,8 +1,10 @@
 package com.mvvm.weather.data.datamapper.datamapper
 
+import com.mvvm.weather.R
 import com.mvvm.weather.presentation.common.WeatherUnits
 import com.mvvm.weather.data.rest.model.DarkskyModel
 import com.mvvm.weather.data.utils.DateTimeUtils
+import com.mvvm.weather.presentation.common.WeatherType
 import com.mvvm.weather.presentation.model.DisplayableWeatherData
 
 class WeatherDataMapper {
@@ -43,7 +45,7 @@ class WeatherDataMapper {
         return DisplayableWeatherData.DisplayableData(
             getTimeToDateString(item.time),
             item.summary,
-            item.icon,
+            getWeatherIcon(item.icon),
             getTemperature(item.temperature, item.apparentTemperatureHigh),
             item.dewPoint?.toString(),
             getHumidity(item.humidity),
@@ -62,30 +64,6 @@ class WeatherDataMapper {
             getMonth(item.time)
         )
     }
-
-    fun transformFromDBData(dbData: List<DarkskyModel.Data>): DisplayableWeatherData.DisplayableDarkSky {
-        var displayableData: MutableList<DisplayableWeatherData.DisplayableData> =
-            ArrayList<DisplayableWeatherData.DisplayableData>()
-
-        if (!dbData.isNullOrEmpty()) {
-            for (dataItem in dbData) {
-                var data = transformDisplayableData(dataItem)
-                displayableData.add(data)
-            }
-        }
-
-        var daily = DisplayableWeatherData.DisplayableDaily(
-            displayableData.get(0).summary,
-            displayableData.get(0).icon,
-            displayableData as MutableList<DisplayableWeatherData.DisplayableData>
-        )
-
-        var currently = displayableData.get(0)
-        var displayableModel = DisplayableWeatherData.DisplayableDarkSky(currently, daily)
-
-        return displayableModel
-    }
-
 
     private fun getTimeToDateString(time: Long): String? {
         return DateTimeUtils.convertLongToDateString(time, DateTimeUtils.FORMAT_CURRENT)
@@ -168,6 +146,25 @@ class WeatherDataMapper {
     private fun getPressure(pressure: Double?): String? {
         var cloudPercent = pressure?.times(100)
         return "" + convertDoubleTwoDecimalPoints("" + cloudPercent)
+    }
+
+    private fun getWeatherIcon(status:String?):Int{
+        var icon = 0;
+        when (status) {
+            WeatherType.Clear_day.stringValue() -> {
+                icon =  R.drawable.ic_weather_clear_day
+            }
+            WeatherType.Partly_cloudy_day.stringValue() -> {
+                icon =  R.drawable.ic_weather_partly_cloudy_day
+            }
+            WeatherType.Partly_cloudy_night.stringValue() -> {
+                icon = R.drawable.ic_weather_party_cloudy_night
+            }
+            WeatherType.Rain.stringValue() -> {
+                icon = R.drawable.ic_weather_rain
+            }
+        }
+        return icon
     }
 
 }

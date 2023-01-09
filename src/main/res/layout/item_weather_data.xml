@@ -12,11 +12,6 @@
         <variable
             name="weather"
             type="DisplayableData" />
-
-        <variable
-            name="image"
-            type="int" />
-
     </data>
 
     <androidx.cardview.widget.CardView
@@ -48,6 +43,7 @@
                 android:text="@{weather.day}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                android:fontFamily="@font/font_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +55,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/margin_10"
-                app:imageResource="@{image}"
+                app:imageResource="@{weather.icon}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_day"
                 app:layout_constraintTop_toTopOf="parent"
@@ -73,6 +69,7 @@
                 android:text="@{weather.temperature}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:fontFamily="@font/font_semibold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/icon_day"
                 app:layout_constraintTop_toTopOf="parent"

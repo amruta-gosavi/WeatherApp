@@ -12,10 +12,6 @@
         <variable
             name="weather"
             type="DisplayableData" />
-
-        <variable
-            name="image"
-            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

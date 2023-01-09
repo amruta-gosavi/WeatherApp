@@ -13,7 +13,12 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/WeatherDetailsFragment" />
+            app:destination="@id/WeatherDetailsFragment">
+            <argument
+                android:name="pos"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/WeatherDetailsFragment"

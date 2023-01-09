@@ -7,11 +7,18 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="weather_data">Weather Data</string>
     <string name="weather_details">Weather Details</string>
-    <string name="new_york">New York city</string>
+    <string name="new_york">New York City</string>
     <string name="search_city_or_location">Search for a city or location</string>
     <string name="alert_permission_denied">Permission denied</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="precipintensity">Precip.Intensity</string>
+    <string name="cloud_cover">Cloud cover</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind">Wind</string>
+    <string name="gust">Gust</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+
 </resources>

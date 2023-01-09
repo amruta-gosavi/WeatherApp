@@ -1,6 +1,5 @@
 package com.mvvm.weather.presentation.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +8,6 @@ import com.mvvm.weather.databinding.ItemWeatherDataBinding
 import com.mvvm.weather.presentation.model.DisplayableWeatherData
 
 class WeatherAdapter(
-    private val context: Context,
     private val action: ActionListener
 ) : RecyclerView.Adapter<WeatherViewHolder>() {
 
@@ -30,6 +28,6 @@ class WeatherAdapter(
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        holder.bind(records[position], context)
+        holder.bind(records[position], position)
     }
 }

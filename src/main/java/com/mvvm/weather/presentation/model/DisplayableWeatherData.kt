@@ -16,7 +16,7 @@ object DisplayableWeatherData {
     data class DisplayableData(
         val time: String?,
         val summary: String? = "",
-        val icon: String?,
+        val icon: Int,
         val temperature: String?,
         val dewPoint: String?,
         val humidity: String?,
@@ -32,7 +32,7 @@ object DisplayableWeatherData {
         val sunset: String?,
         val precipIntensity: String?,
         val pressure: String?,
-        val month:String?
+        val month: String?
     )
 }
 

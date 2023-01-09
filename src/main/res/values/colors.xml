@@ -14,4 +14,6 @@
     <color name="orange_500">#99F9AA33</color>
     <color name="card_background">#FFFFFF</color>
     <color name="shrine_pink">#FEEAE6</color>
+    <color name="purple_blue">#3f51b5</color>
+    <color name="dark_gray">#4E4E56</color>
 </resources>
