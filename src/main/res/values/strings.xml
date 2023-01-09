@@ -13,4 +13,5 @@
     <string name="weather_details">Weather Details</string>
     <string name="new_york">New York city</string>
     <string name="search_city_or_location">Search for a city or location</string>
+    <string name="alert_permission_denied">Permission denied</string>
 </resources>
