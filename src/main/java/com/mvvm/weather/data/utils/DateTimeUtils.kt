@@ -6,7 +6,7 @@ import java.util.*
 
 
 object DateTimeUtils {
-    var FORMAT_CURRENT = "MMM d hh:mm a"
+    var FORMAT_CURRENT = "EEEE MMM d hh:mm a"
     var FORMAT_DAY = "EEE"
     var Format_Month = "MMMM"
 
