@@ -9,7 +9,6 @@
 
     <string name="weather_data">Weather Data</string>
     <string name="weather_details">Weather Details</string>
-    <string name="new_york">New York City</string>
     <string name="search_city_or_location">Search for a city or location</string>
     <string name="alert_permission_denied">Permission denied</string>
     <string name="precipitation">Precipitation</string>
@@ -22,5 +21,24 @@
     <string name="sunset">Sunset</string>
     <string name="alert_no_internet">No internet connection!! Please try again!</string>
     <string name="alert_error">Something went wrong! Please try again later</string>
+
+    <string-array name="city_array">
+        <item>@string/new_york</item>
+        <item>@string/la</item>
+        <item>@string/chicago</item>
+        <item>@string/houston</item>
+        <item>@string/sfo</item>
+        <item>@string/atlanta</item>
+        <item>@string/boston</item>
+        </string-array>
+
+    <string name="new_york">New York</string>
+    <string name="boston">Boston</string>
+    <string name="la">Los Angeles</string>
+    <string name="chicago">Chicago</string>
+    <string name="houston">Houston</string>
+    <string name="sfo">San Francisco</string>
+    <string name="atlanta">Atlanta</string>
+
 
 </resources>

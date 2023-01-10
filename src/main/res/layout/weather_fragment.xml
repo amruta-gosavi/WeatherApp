@@ -23,7 +23,7 @@
             android:padding="@dimen/fab_margin"
             tools:context=".presentation.WeatherFragment">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/et_location"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
@@ -50,7 +50,6 @@
                 android:layout_marginStart="@dimen/margin_10"
                 android:layout_marginTop="@dimen/standard_margin"
                 android:fontFamily="@font/font_regular"
-                android:text="@string/new_york"
                 android:textSize="@dimen/standard_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
