@@ -1,6 +1,7 @@
 package com.mvvm.weather.domain.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mvvm.weather.presentation.model.DisplayableWeatherData
 
 /**
@@ -11,5 +12,5 @@ interface WeatherRepository {
     fun getWeatherForecast(
         lat: Double,
         lon: Double
-    ): LiveData<DisplayableWeatherData.DisplayableDarkSky>
+    ): MutableLiveData<List<DisplayableWeatherData.DisplayableData>>
 }

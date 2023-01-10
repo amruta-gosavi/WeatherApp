@@ -19,18 +19,21 @@ class WeatherRepoImpl(
     val utils: ConnectionUtils
 ) : WeatherRepository {
 
+    private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, throwable ->
+        throwable.printStackTrace()
+    }
+
 
     override fun getWeatherForecast(
         lat: Double,
         lon: Double
-    ): MutableLiveData<DisplayableWeatherData.DisplayableDarkSky> {
-        val hasConnection = utils.isConnectedToInternet()
-//        return if (hasConnection) {
-//            getWeatherForecastFromAPI(lat, lon)
-//        } else {
-//           // WeatherDBService.getWeatherForecastFromDB(context, 7, 0)
-//        }
-        return getWeatherForecastFromAPI(lat, lon)
+    ): MutableLiveData<List<DisplayableWeatherData.DisplayableData>>{
+        val hasConnection = ConnectionUtils().isOnline(context)
+        return if (hasConnection) {
+           getWeatherForecastFromAPI(lat, lon)
+        } else {
+            WeatherDBService.getWeatherForecastFromDB(context, 7, 0)
+        }
     }
 
     companion object {
@@ -49,10 +52,10 @@ class WeatherRepoImpl(
     private fun getWeatherForecastFromAPI(
         lat: Double,
         lon: Double
-    ): MutableLiveData<DisplayableWeatherData.DisplayableDarkSky> {
-        val liveData = MutableLiveData<DisplayableWeatherData.DisplayableDarkSky>()
+    ): MutableLiveData<List<DisplayableWeatherData.DisplayableData>> {
+        val liveData = MutableLiveData<List<DisplayableWeatherData.DisplayableData>>()
 
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
             val response = RestApi.instance?.weatherApi?.getForecast(
                 RestApi.instance?.getHeaders()!!, Constants.API_KEY, lat.toString(), lon.toString()
             )
@@ -60,12 +63,14 @@ class WeatherRepoImpl(
                 if (response?.isSuccessful == true) {
                     val dailyData = response.body()?.let { WeatherDataMapper().transform(it) }
                     if (dailyData != null) {
-                        liveData.value = dailyData
-                        response?.body()?.daily?.data?.let {
-                            WeatherDBService.insertResource(
-                                context,
-                                it
-                            )
+                        liveData.value = dailyData.daily.data
+                        dailyData.daily.data.let {
+                            it?.let { it1 ->
+                                WeatherDBService.insertResource(
+                                    context,
+                                    it1
+                                )
+                            }
                         }
                     }
                 } else {

@@ -65,7 +65,7 @@ class WeatherDataMapper {
         )
     }
 
-    private fun getTimeToDateString(time: Long): String? {
+    private fun getTimeToDateString(time: Long): String {
         return DateTimeUtils.convertLongToDateString(time, DateTimeUtils.FORMAT_CURRENT)
     }
 
@@ -114,10 +114,7 @@ class WeatherDataMapper {
     }
 
     private fun getDay(time: Long): String? {
-        var timeString: String? = null
-        DateTimeUtils.convertLongToDateString(time, DateTimeUtils.FORMAT_DAY)
-            .also { timeString = it }
-        return timeString
+        return DateTimeUtils.convertLongToDateString(time, DateTimeUtils.FORMAT_DAY)
     }
 
     private fun getMonth(time: Long): String? {
@@ -148,14 +145,14 @@ class WeatherDataMapper {
         return "" + convertDoubleTwoDecimalPoints("" + cloudPercent)
     }
 
-    private fun getWeatherIcon(status:String?):Int{
+    private fun getWeatherIcon(status: String?): Int {
         var icon = 0;
         when (status) {
             WeatherType.Clear_day.stringValue() -> {
-                icon =  R.drawable.ic_weather_clear_day
+                icon = R.drawable.ic_weather_clear_day
             }
             WeatherType.Partly_cloudy_day.stringValue() -> {
-                icon =  R.drawable.ic_weather_partly_cloudy_day
+                icon = R.drawable.ic_weather_partly_cloudy_day
             }
             WeatherType.Partly_cloudy_night.stringValue() -> {
                 icon = R.drawable.ic_weather_party_cloudy_night

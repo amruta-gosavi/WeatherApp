@@ -7,8 +7,13 @@ import androidx.room.RoomDatabase
 import com.mvvm.weather.data.persistence.dao.WeatherDao
 import com.mvvm.weather.data.rest.model.DarkskyModel
 import com.mvvm.weather.data.utils.Constants
+import com.mvvm.weather.presentation.model.DisplayableWeatherData
 
-@Database(entities = [DarkskyModel.Data::class], version = 1, exportSchema = false)
+@Database(
+    entities = [DisplayableWeatherData.DisplayableData::class],
+    version = 2,
+    exportSchema = false
+)
 abstract class WeatherDB : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao
@@ -27,6 +32,7 @@ abstract class WeatherDB : RoomDatabase() {
 
         private fun buildDatabase(context: Context): WeatherDB {
             return Room.databaseBuilder(context, WeatherDB::class.java, Constants.DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

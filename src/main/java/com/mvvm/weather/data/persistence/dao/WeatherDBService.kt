@@ -2,9 +2,7 @@ package com.mvvm.weather.data.persistence.dao
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import com.mvvm.weather.data.datamapper.datamapper.WeatherDataMapper
 import com.mvvm.weather.data.persistence.local.WeatherDB
-import com.mvvm.weather.data.rest.model.DarkskyModel
 import com.mvvm.weather.presentation.model.DisplayableWeatherData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,14 +13,16 @@ object WeatherDBService {
 
     private val databaseJob = Job()
     val databaseScope = CoroutineScope(Dispatchers.IO + databaseJob)
-    private val weatherDataMapper = WeatherDataMapper()
 
     @JvmStatic
-    fun insertResource(context: Context, list: List<DarkskyModel.Data>) {
+    fun insertResource(
+        context: Context,
+        list: MutableList<DisplayableWeatherData.DisplayableData>
+    ) {
         databaseScope.launch {
             val databaseService = WeatherDB.getInstance(context)
             for (entry in list) {
-              //  databaseService?.weatherDao()?.insert(entry)
+                databaseService.weatherDao().insert(entry)
             }
         }
     }
@@ -31,12 +31,12 @@ object WeatherDBService {
         context: Context,
         limit: Int,
         offset: Int
-    ): MutableLiveData<DisplayableWeatherData.DisplayableDarkSky> {
-        val liveData = MutableLiveData<DisplayableWeatherData.DisplayableDarkSky>()
+    ): MutableLiveData<List<DisplayableWeatherData.DisplayableData>> {
+        val liveData = MutableLiveData<List<DisplayableWeatherData.DisplayableData>>()
         val databaseService = WeatherDB.getInstance(context)
         databaseScope.launch {
-          //  val data = databaseService.weatherDao().queryWeatherData(limit, offset)
-           // liveData.value = weatherDataMapper.transformFromDBData(data)
+            val data = databaseService.weatherDao().queryWeatherData(limit, offset)
+            liveData.postValue(data)
         }
         return liveData
     }

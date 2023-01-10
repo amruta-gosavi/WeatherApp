@@ -10,15 +10,15 @@ import com.mvvm.weather.presentation.viewmodel.WeatherViewModelFactory
  */
 object InjectorUtils {
 
-    private fun getConnectionUtils(context: Context): ConnectionUtils {
+    private fun getConnectionUtils(): ConnectionUtils {
 
-        return ConnectionUtils(context)
+        return ConnectionUtils()
     }
 
     private fun getWeatherRepository(context: Context): WeatherRepository {
         return WeatherRepoImpl.getInstance(
             context,
-            getConnectionUtils(context)
+            getConnectionUtils()
         )
     }
 

@@ -20,5 +20,7 @@
     <string name="gust">Gust</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
+    <string name="alert_no_internet">No internet connection!! Please try again!</string>
+    <string name="alert_error">Something went wrong! Please try again later</string>
 
 </resources>

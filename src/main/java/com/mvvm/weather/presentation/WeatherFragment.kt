@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvvm.weather.R
+import com.mvvm.weather.data.utils.ConnectionUtils
 import com.mvvm.weather.data.utils.Constants
 import com.mvvm.weather.data.utils.InjectorUtils
 import com.mvvm.weather.databinding.WeatherFragmentBinding
@@ -49,7 +51,7 @@ class WeatherFragment : Fragment(), ActionListener {
         viewModel.userLocation.value = Constants.NEW_YORK_LOCATION
         viewModel.weatherData.observe(viewLifecycleOwner, Observer { data ->
             adapter?.apply {
-                records = data.daily.data ?: ArrayList()
+                records = data
                 notifyDataSetChanged()
             }
         })
@@ -66,5 +68,12 @@ class WeatherFragment : Fragment(), ActionListener {
         adapter = WeatherAdapter(this)
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        if (!ConnectionUtils().isOnline(requireContext())) {
+            showError(requireContext().resources.getString(R.string.alert_no_internet))
+        }
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 }
